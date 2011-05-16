@@ -2,7 +2,7 @@ $:.unshift(File.expand_path("../lib", __FILE__))
 
 Gem::Specification.new do |s|
   s.name = "ppscr"
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.date = Time.now.utc.strftime("%Y-%m-%d")
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = false

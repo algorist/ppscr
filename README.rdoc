@@ -1,0 +1,43 @@
+= Description
+
+ppscr is a simple utility to pp objects and guarantee they get to the
+glass by writing to /dev/tty.
+
+= Example Usage:
+
+    require 'ppscr'
+    hash = { 'foo' => 'bar' }
+    ppscr :hash => hash
+
+Prints to the screen (/dev/tty):
+
+    {:hash=>{"foo"=>"bar"}}
+
+
+= Why would you use this?
+
+You probably won't most of the time, but I've found it helpful in
+debugging scenarios when a program's output is needed but for some
+reason inaccessible (e.g., redirected to an unknown or protected file,
+invoked by a parent that doesn't monitor STDOUT, etc.).
+
+To illustrate, imagine you have a program, pp_ppscr.rb:
+
+    require 'pp'
+    require 'ppscr'
+
+    hash = { :foo => :bar }
+    pp "pp :hash => hash"
+    pp :hash => hash
+    ppscr "ppscr :hash => hash"
+    ppscr :hash => hash
+
+If you execute
+
+    ruby ./pp_ppscr.rb > /dev/null
+
+The bare pp output is directed to the specified handle (in this case,
+oblivion), while the ppscr invocation results in output to the screen:
+
+    "ppscr :hash => hash"
+    {:hash=>{:foo=>:bar}}

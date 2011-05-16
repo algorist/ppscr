@@ -19,6 +19,6 @@
 require 'pp'
 
 def ppscr(obj)
-  File.open('/dev/tty', 'w'){ |screen| screen.write(PP.pp(obj)) }
+  File.open('/dev/tty', 'w'){ |screen| PP.pp(obj, screen) }
   obj
 end
